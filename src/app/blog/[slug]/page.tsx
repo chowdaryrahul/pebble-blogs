@@ -18,6 +18,7 @@ const BlogPost = () => {
         const text = await response.text();
         setMarkdownContent(text);
       } catch (error) {
+        console.error(error)
         notFound(); // If file not found, show 404
       }
     };

@@ -12,7 +12,7 @@ const Layout = ({ children }: LayoutProps) => (
     <body className="bg-gray-50 text-gray-900 font-serif">
       <header className="py-6 px-4 bg-white shadow-lg">
         <Link href="/">
-          <span>Rahul's Blog</span>
+          <span>Rahul&apos;s Blog</span>
         </Link>
       </header>
       <main className="max-w-3xl mx-auto p-6">{children}</main>
