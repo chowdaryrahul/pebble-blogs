@@ -10,8 +10,8 @@ interface BlogPreview {
 
 const Home = () => {
   const blogPreviews: BlogPreview[] = [
-    { slug: 'numero-uno', title: 'My First Blog', description: 'This is a short description of the blog...' },
-    // Add more previews here
+    // { slug: 'numero-uno', title: 'My First Blog', description: 'This is a short description of the blog...' },
+    { slug: 'nextjs-common-mistakes', title: 'NextJs What Not To Do', description: 'Common mistakes in NextJs' }
   ];
 
   return (
