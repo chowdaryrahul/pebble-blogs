@@ -8,6 +8,12 @@ import remarkGfm from 'remark-gfm'; // GitHub Flavored Markdown support
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
+interface CustomCodeProps {
+  inline?: boolean;
+  className?: string;
+  children?: React.ReactNode;
+}
+
 const BlogPost = () => {
   const params = useParams();
   const slug = params?.slug as string;
@@ -31,24 +37,14 @@ const BlogPost = () => {
 
   return (
     <article className="prose lg:prose-xl mx-auto font-serif">
-      {/* <h1 className="font-serif">Title Here (Can Extract From Markdown)</h1> */}
       {/*
       *If className is undefined or empty → it's inline code.
       *If className contains "language-" → it's a block of code.
       */}
-      {/* Render Markdown content using ReactMarkdown */}
       <ReactMarkdown
-        children={markdownContent}
         remarkPlugins={[remarkGfm]}
         components={{
-          p({ node, children }: any) {
-            // Check if the paragraph directly contains a `code` block
-            if (node.children.length === 1 && node.children[0].tagName === "code") {
-              return <>{children}</>;
-            }
-            return <p>{children}</p>;
-          },
-          code: ({ className, children }: any) => {
+          code: ({ className, children }: CustomCodeProps) => {
             const language = className?.replace('language-', '') || '';
 
             if (!language) {
@@ -65,7 +61,7 @@ const BlogPost = () => {
             );
           },
         }}
-      />
+      >{markdownContent}</ReactMarkdown>
     </article>
   );
 };
